@@ -3,8 +3,9 @@
 [![Gem Version](https://badge.fury.io/rb/request_migrations.svg)](https://badge.fury.io/rb/request_migrations)
 
 **Make breaking API changes without breaking things!** Use `request_migrations` to craft
-backwards-compatible migrations for API requests, responses, and more. This is being
-used in production by [Keygen](https://keygen.sh) to serve millions of API requests per day.
+backwards-compatible migrations for API requests, responses, and more. This gem was extracted
+from [Keygen](https://keygen.sh) and is being used in production to serve millions of API
+requests per day.
 
 Sponsored by:
 

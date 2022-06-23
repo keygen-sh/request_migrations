@@ -32,7 +32,7 @@ module RequestMigrations
     ##
     # versions defines past versions and their migrations.
     #
-    # @return [Hash<String, Array<String, Integer, Float>>] past versions.
+    # @return [Hash] past versions.
     config_accessor(:versions) { [] }
   end
 end

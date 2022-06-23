@@ -7,9 +7,11 @@ backwards-compatible migrations for API requests, responses, and more. This gem 
 from [Keygen](https://keygen.sh) and is being used in production to serve millions of API
 requests per day.
 
+![request_migrations diagram](https://user-images.githubusercontent.com/6979737/175406011-883b2671-152c-4e6e-8716-d6c4c3ed2676.png)
+
 Sponsored by:
 
-[![Keygen logo](https://camo.githubusercontent.com/d50a6bd1f31fd4da523b8aa555a54356cc2d3e81eb8bc9123303787e44c5bb07/68747470733a2f2f6b657967656e2e73682f696d616765732f62616467652e706e67)](https://keygen.sh)
+[![Keygen logo](https://user-images.githubusercontent.com/6979737/175406169-bd8bf064-7343-4bd1-94b7-a773ecec07b8.png)](https://keygen.sh)
 
 _A software licensing and distribution API built for developers._
 

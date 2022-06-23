@@ -1,6 +1,29 @@
 # frozen_string_literal: true
 
 module RequestMigrations
+  ##
+  # Migration represents a migration for a specific version.
+  #
+  # @example
+  #   class CombineNamesForUserMigration < RequestMigrations::Migration
+  #     description %(transforms a user's first and last name to a combined name attribute)
+  #
+  #     migrate if: -> data { data in type: 'user' } do |data|
+  #       first_name = data.delete(:first_name)
+  #       last_name  = data.delete(:last_name)
+  #
+  #       data[:name] = "#{first_name} #{last_name}"
+  #     end
+  #
+  #     response if: -> res { res.successful? && res.request.params in controller: 'api/v1/users',
+  #                                                                    action: 'show' } do |res|
+  #       data = JSON.parse(res.body, symbolize_names: true)
+  #
+  #       migrate!(data)
+  #
+  #       res.body = JSON.generate(data)
+  #     end
+  #   end
   class Migration
     ##
     # @private

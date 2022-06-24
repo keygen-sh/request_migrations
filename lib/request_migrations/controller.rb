@@ -15,7 +15,7 @@ module RequestMigrations
       def migrate!
         logger.debug { "Migrating from #{current_version} to #{target_version} (#{migrations.size} potential migrations)" }
 
-        migrations.each_with_index { |migration, i|
+        migrations.reverse.each_with_index { |migration, i|
           logger.debug { "Applying migration #{migration} (#{i + 1}/#{migrations.size})" }
 
           migration.new.migrate_request!(request)

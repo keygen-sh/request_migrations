@@ -37,11 +37,12 @@ module RequestMigrations
 
     def logger = RequestMigrations.logger
 
-    # TODO(ezekg) These should be sorted.
     def migrations
       @migrations ||=
         RequestMigrations.config.versions
           .filter { |(version, _)| Version.new(version).between?(target_version, current_version) }
+          .sort
+          .reverse
           .flat_map { |(_, migrations)| migrations }
           .map { |migration|
             case migration

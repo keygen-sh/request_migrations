@@ -279,7 +279,8 @@ class WebhookWorker
 end
 ```
 
-Now, we've successfully applied a migration to both our API responses, as well
+This will apply the block defined in `migrate` onto our data. With that,
+we've successfully applied a migration to both our API responses, as well
 as to the webhook events we send. In this case, if our `event` matches the
 our user shape, e.g. `type: 'user'`, then the migration will be applied.
 
@@ -288,8 +289,9 @@ In addition to one-off migrations, this allows for easier testing.
 ### Routing constraints
 
 When you want to encourage API clients to upgrade, you can utilize a routing `version_constraint`
-to define routes only available for certain versions. You can also utilize routing constraints
-to remove an API endpoint entirely.
+to define routes only available for certain versions.
+
+You can also utilize routing constraints to remove an API endpoint entirely.
 
 ```ruby
 Rails.application.routes.draw do
@@ -307,7 +309,7 @@ Rails.application.routes.draw do
 end
 ```
 
-Currently, routing constraints only work for the `:semver` version format.
+Currently, routing constraints only work for the `:semver` version format. (PRs welcome!)
 
 ### Configuration
 
@@ -350,13 +352,15 @@ end
 By default, `request_migrations` uses a `:semver` version format, but it can be configured
 to instead use one of the following, set via `config.version_format=`.
 
-| Format     |                                                     |
-|:-----------|:----------------------------------------------------|
-| `:semver`  | Use semantic versions, e.g. `1.0`, `1.1, and `2.0`. |
-| `:date`    | Use date versions, e.g. `2020-09-02`, `2021-01-01`. |
-| `:integer` | Use integer versions, e.g. `1`, `2`, and `3`.       |
-| `:float`   | Use float versions, e.g. `1.0`, `1.1`, and `2.0`.   |
-| `:string`  | Use string versions, e.g. `a`, `b`, and `z`.        |
+| Format     |                                                      |
+|:-----------|:-----------------------------------------------------|
+| `:semver`  | Use semantic versions, e.g. `1.0`, `1.1`, and `2.0`. |
+| `:date`    | Use date versions, e.g. `2020-09-02`, `2021-01-01`.  |
+| `:integer` | Use integer versions, e.g. `1`, `2`, and `3`.        |
+| `:float`   | Use float versions, e.g. `1.0`, `1.1`, and `2.0`.    |
+| `:string`  | Use string versions, e.g. `a`, `b`, and `z`.         |
+
+All versions will be sorted according to the format's type.
 
 ## Testing
 
@@ -392,7 +396,7 @@ end
 
 ## Tips and tricks
 
-Over the years, we're learned a thing or two about writing request migrations. We'll share tips here.
+Over the years, we're learned a thing or two about versioning an API. We'll share tips here.
 
 ### Use pattern matching
 
@@ -572,8 +576,8 @@ end
 ### Avoid routing contraints
 
 Avoid using routing version constraints that remove functionality. They can be a headache
-during upgrades. Consider only making _additive_ changes. Instead, consider removing the
-documenation for old or deprecated endpoints, to limit any new usage.
+during upgrades. Consider only making _additive_ changes. Instead, consider removing or
+hiding the documenation for old or deprecated endpoints, to limit any new usage.
 
 ```ruby
 Rails.application.routes.draw do
@@ -644,7 +648,7 @@ end
 ```
 
 Instead of potentially tens or hundreds of queries, we make a single purposeful query
-to get the data we need to complete the migration.
+to get the data we need in order to complete the migration.
 
 ---
 

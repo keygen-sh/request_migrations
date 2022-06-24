@@ -211,6 +211,8 @@ The `request` method accepts an `:if` keyword, which should be a lambda
 that evaluates to a boolean, which determines whether or not the migration
 should be applied.
 
+Request migrations should [avoid using the `migrate` method](#avoid-migrate-for-request-migrations).
+
 ### One-off migrations
 
 In our first scenario, where we combined our user's name attributes, we defined
@@ -544,10 +546,10 @@ end
 
 ### Avoid migrate for request migrations
 
-Avoid using `migrate` for request migrations. If you do, one-off migrations, e.g. for webhooks
-will apply the request migrations, which may erroneously produce bad output, or even undo a
-response migration. Instead, keep all request migration logic, e.g. transforming params,
-inside of the `request` block.
+Avoid using `migrate` for request migrations. If you do, then one-off migrations, e.g. for
+webhooks, will attempt to apply the request migrations. This may erroneously produce bad
+output, or even undo a response migration. Instead, keep all request migration logic,
+e.g. transforming params, inside of the `request` block.
 
 ```ruby
 class SomeMigration < RequestMigrations::Migration

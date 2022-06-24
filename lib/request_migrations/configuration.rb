@@ -26,13 +26,13 @@ module RequestMigrations
     ##
     # current_version defines the latest version.
     #
-    # @return [String, Integer, Float] the current version.
+    # @return [String, Integer, Float, nil] the current version.
     config_accessor(:current_version) { nil }
 
     ##
     # versions defines past versions and their migrations.
     #
-    # @return [Hash] past versions.
+    # @return [Hash<String, Array<Symbol, String, Class>>] past versions.
     config_accessor(:versions) { [] }
   end
 end

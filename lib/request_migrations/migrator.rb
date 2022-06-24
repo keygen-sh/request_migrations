@@ -15,9 +15,9 @@ module RequestMigrations
     ##
     # migrate! attempts to apply all matching migrations on data.
     #
-    # @param data [*] the data to be migrated.
+    # @param data [Any] the data to be migrated.
     #
-    # @return [*] the migrated data.
+    # @return [void]
     def migrate!(data:)
       logger.debug { "Migrating from #{current_version} to #{target_version} (#{migrations.size} potential migrations)" }
 

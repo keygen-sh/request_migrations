@@ -341,19 +341,19 @@ RSpec.describe ActionController::Base, type: :controller do
     RequestMigrations.configure do |config|
       config.current_version = '1.5'
       config.versions        = {
-        '1.4' => [
-          Class.new(RequestMigrations::Migration) do
-            request { |req| req.params[:n] = 5 if req.params in { n: 4 } }
-          end,
-        ],
         '1.3' => [
           Class.new(RequestMigrations::Migration) do
             request { |req| req.params[:n] = 4 if req.params in { n: 3 } }
           end,
         ],
-        '1.2' => [
+        '1.0' => [
           Class.new(RequestMigrations::Migration) do
-            request { |req| req.params[:n] = 3 if req.params in { n: 2 } }
+            request { |req| req.params[:n] = 1 if req.params in { n: 0 } }
+          end,
+        ],
+        '1.4' => [
+          Class.new(RequestMigrations::Migration) do
+            request { |req| req.params[:n] = 5 if req.params in { n: 4 } }
           end,
         ],
         '1.1' => [
@@ -361,9 +361,9 @@ RSpec.describe ActionController::Base, type: :controller do
             request { |req| req.params[:n] = 2 if req.params in { n: 1 } }
           end,
         ],
-        '1.0' => [
+        '1.2' => [
           Class.new(RequestMigrations::Migration) do
-            request { |req| req.params[:n] = 1 if req.params in { n: 0 } }
+            request { |req| req.params[:n] = 3 if req.params in { n: 2 } }
           end,
         ],
       }
@@ -384,14 +384,9 @@ RSpec.describe ActionController::Base, type: :controller do
     RequestMigrations.configure do |config|
       config.current_version = '1.5'
       config.versions        = {
-        '1.4' => [
+        '1.1' => [
           Class.new(RequestMigrations::Migration) do
-            response { |res| res.body = { n: 4 }.to_json if res.body == { n: 5 }.to_json }
-          end,
-        ],
-        '1.3' => [
-          Class.new(RequestMigrations::Migration) do
-            response { |res| res.body = { n: 3 }.to_json if res.body == { n: 4 }.to_json }
+            response { |res| res.body = { n: 1 }.to_json if res.body == { n: 2 }.to_json }
           end,
         ],
         '1.2' => [
@@ -399,14 +394,19 @@ RSpec.describe ActionController::Base, type: :controller do
             response { |res| res.body = { n: 2 }.to_json if res.body == { n: 3 }.to_json }
           end,
         ],
-        '1.1' => [
+        '1.4' => [
           Class.new(RequestMigrations::Migration) do
-            response { |res| res.body = { n: 1 }.to_json if res.body == { n: 2 }.to_json }
+            response { |res| res.body = { n: 4 }.to_json if res.body == { n: 5 }.to_json }
           end,
         ],
         '1.0' => [
           Class.new(RequestMigrations::Migration) do
             response { |res| res.body = { n: 0 }.to_json if res.body == { n: 1 }.to_json }
+          end,
+        ],
+        '1.3' => [
+          Class.new(RequestMigrations::Migration) do
+            response { |res| res.body = { n: 3 }.to_json if res.body == { n: 4 }.to_json }
           end,
         ],
       }

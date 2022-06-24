@@ -572,8 +572,8 @@ end
 ### Avoid routing contraints
 
 Avoid using routing version constraints that remove functionality. They can be a headache
-during upgrades. Consider only making _additive_ changes. You should remove docs for old
-or deprecated endpoints to limit any new usage.
+during upgrades. Consider only making _additive_ changes. Instead, consider removing the
+documenation for old or deprecated endpoints, to limit any new usage.
 
 ```ruby
 Rails.application.routes.draw do
@@ -593,7 +593,7 @@ end
 
 ### Avoid n+1s
 
-Avoid introducing n+1 queries in your migration. Try to utilize the current data you have
+Avoid introducing n+1 queries in your migrations. Try to utilize the current data you have
 to perform more meaningful queries, returning only the data needed for the migration.
 
 ```ruby

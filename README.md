@@ -542,6 +542,30 @@ class V1x0::UsersController
 end
 ```
 
+### Avoid migrate for request migrations
+
+Avoid using `migrate` for request migrations. If you do, one-off migrations, e.g. for webhooks
+will apply the request migrations, which may erroneously produce bad output, or even undo a
+response migration. Instead, keep all request migration logic, e.g. transforming params,
+inside of the `request` block.
+
+```ruby
+class SomeMigration < RequestMigrations::Migration
+  # Bad (side-effects for one-off migrations)
+  migrate do |params|
+    params[:foo] = params.delete(:bar)
+  end
+
+  request do |req|
+    migrate!(req.params)
+  end
+
+  # Good
+  request do |req|
+    req.params[:foo] = req.params.delete(:bar)
+  end
+end
+```
 
 ### Avoid routing contraints
 

@@ -50,7 +50,7 @@ _We're working on improving the docs._
 
 - Define migrations for migrating a response between versions.
 - Define migrations for migrating a request between versions.
-- Define migrations for applying one-off migrations.
+- Define migrations for applying data migrations.
 - Define version-based routing constraints.
 - It's fast.
 
@@ -213,17 +213,16 @@ should be applied.
 
 Request migrations should [avoid using the `migrate` method](#avoid-migrate-for-request-migrations).
 
-### One-off migrations
+### Data migrations
 
 In our first scenario, where we combined our user's name attributes, we defined
 our migration using the `migrate` class method. At this point, you may be wondering
 why we did that, since we didn't use that method for the 2 previous request and
 response migrations above.
 
-Well, it comes down to support for one-off migrations (as well as offering
-a nice interface for pattern matching inputs).
-
-Let's go back to our first example, `CombineNamesForUserMigration`.
+Well, it comes down to support for data migrations (as well as offering a nice
+interface for pattern matching inputs). Let's go back to our first example,
+`CombineNamesForUserMigration`.
 
 ```ruby
 class CombineNamesForUserMigration < RequestMigrations::Migration
@@ -253,7 +252,7 @@ end
 ```
 
 What if we had [a webhook system](https://keygen.sh/blog/how-to-build-a-webhook-system-in-rails-using-sidekiq/)
-that we also needed to apply these migrations to? Well, we can use a one-off migration
+that we also needed to apply these migrations to? Well, we can use a data migration
 here, via the `Migrator` class:
 
 ```ruby
@@ -284,7 +283,7 @@ we've successfully applied a migration to both our API responses, as well
 as to the webhook events we send. In this case, if our `event` matches the
 our user shape, e.g. `type: 'user'`, then the migration will be applied.
 
-In addition to one-off migrations, this allows for easier testing.
+In addition to data migrations, this allows for easier testing.
 
 ### Routing constraints
 
@@ -364,7 +363,7 @@ All versions will be sorted according to the format's type.
 
 ## Testing
 
-Using one-offs allows for easier testing of migrations. For example, using Rspec:
+Using data migrations allows for easier testing of migrations. For example, using Rspec:
 
 ```ruby
 describe CombineNamesForUserMigration do
@@ -550,14 +549,14 @@ end
 
 ### Avoid migrate for request migrations
 
-Avoid using `migrate` for request migrations. If you do, then one-off migrations, e.g. for
+Avoid using `migrate` for request migrations. If you do, then data migrations, e.g. for
 webhooks, will attempt to apply the request migrations. This may erroneously produce bad
 output, or even undo a response migration. Instead, keep all request migration logic,
 e.g. transforming params, inside of the `request` block.
 
 ```ruby
 class SomeMigration < RequestMigrations::Migration
-  # Bad (side-effects for one-off migrations)
+  # Bad (side-effects for data migrations)
   migrate do |params|
     params[:foo] = params.delete(:bar)
   end

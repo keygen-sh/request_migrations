@@ -230,7 +230,7 @@ RSpec.describe ActionController::Base, type: :controller do
     end
   end
 
-  context 'when using a one-off migrator' do
+  context 'when using a data migrator' do
     let(:data) { { type: 'users', id: 'user_x7ydbo6fjd6pubeu', first_name: 'John', last_name: 'Smith' } }
 
     it 'should migrate between versions' do

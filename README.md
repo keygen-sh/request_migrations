@@ -189,7 +189,8 @@ end
 
 The `response` method accepts an `:if` keyword, which should be a lambda
 that evaluates to a boolean, which determines whether or not the migration
-should be applied.
+should be applied. An `ActionDispatch::Response` will be yielded, the
+current response (calls `controller#response`).
 
 ### Request migrations
 
@@ -209,7 +210,8 @@ end
 
 The `request` method accepts an `:if` keyword, which should be a lambda
 that evaluates to a boolean, which determines whether or not the migration
-should be applied.
+should be applied. An `ActionDispatch::Request` object will be yielded,
+the current request (calls `controller#request`).
 
 Request migrations should [avoid using the `migrate` method](#avoid-migrate-for-request-migrations).
 

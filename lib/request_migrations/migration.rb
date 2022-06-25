@@ -77,7 +77,7 @@ module RequestMigrations
       #
       # @param if [Proc] the proc which determines if the migration should run.
       #
-      # @yield [request] the block containing the migration.
+      # @yield [ActionDispatch::Request] the current request.
       def request(if: nil, &block)
         self.request_blocks << ConditionalBlock.new(if:, &block)
       end
@@ -87,7 +87,7 @@ module RequestMigrations
       #
       # @param if [Proc] the proc which determines if the migration should run.
       #
-      # @yield [data] the block containing the migration.
+      # @yield [Any] the provided data.
       def migrate(if: nil, &block)
         self.migration_blocks << ConditionalBlock.new(if:, &block)
       end
@@ -97,7 +97,7 @@ module RequestMigrations
       #
       # @param if [Proc] the proc which determines if the migration should run.
       #
-      # @yield [response] the block containing the migration.
+      # @yield [ActionDispatch::Response] the current response.
       def response(if: nil, &block)
         self.response_blocks << ConditionalBlock.new(if:, &block)
       end

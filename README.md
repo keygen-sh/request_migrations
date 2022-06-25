@@ -324,7 +324,7 @@ Currently, routing constraints only work for the `:semver` version format. (PRs 
 
 ```ruby
 RequestMigrations.configure do |config|
-  # Define a resolver to determine the current version. Here, you can perform
+  # Define a resolver to determine the target version. Here, you can perform
   # a lookup on the current user using request parameters, or simply use
   # a header like we are here, defaulting to the latest version.
   config.request_version_resolver = -> request {

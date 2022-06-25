@@ -192,6 +192,10 @@ that evaluates to a boolean, which determines whether or not the migration
 should be applied. An `ActionDispatch::Response` will be yielded, the
 current response (calls `controller#response`).
 
+The gem makes no assumption on a response's content type or what the migration
+will do. You could, for example, migrate the response body, or mutate the
+headers, or even change the response's status code.
+
 ### Request migrations
 
 Request migrations define a change on a request. For example, modifying a request's
@@ -212,6 +216,10 @@ The `request` method accepts an `:if` keyword, which should be a lambda
 that evaluates to a boolean, which determines whether or not the migration
 should be applied. An `ActionDispatch::Request` object will be yielded,
 the current request (calls `controller#request`).
+
+Again, like with response migrations, the gem makes no assumption on what
+a migration does. A migration could mutate a request's params, or mutate
+headers. It's up to you, all it does is provide the request.
 
 Request migrations should [avoid using the `migrate` method](#avoid-migrate-for-request-migrations).
 

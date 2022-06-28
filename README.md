@@ -4,7 +4,7 @@
 
 **Make breaking API changes without breaking things!** Use `request_migrations` to craft
 backwards-compatible migrations for API requests, responses, and more. Read [the blog
-post](https://keygen.sh/blog/making-breaking-api-changes-without-breaking-things/).
+post](https://keygen.sh/blog/breaking-things-without-breaking-things/).
 
 This gem was extracted from [Keygen](https://keygen.sh) and is being used in production
 to serve millions of API requests per day.

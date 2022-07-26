@@ -44,6 +44,18 @@ module RequestMigrations
   def self.config = @config ||= Configuration.new
 
   ##
+  # @private
+  def self.config=(cfg)
+    @config = cfg
+  end
+
+  ##
+  # @private
+  def self.reset!
+    @config = RequestMigrations::Configuration.new
+  end
+
+  ##
   # logger returns the configured logger.
   #
   # @return [Logger]

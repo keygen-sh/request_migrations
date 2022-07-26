@@ -405,6 +405,21 @@ describe CombineNamesForUserMigration do
 end
 ```
 
+To avoid polluting the global configuration, you can use `RequestMigrations::Testing`
+within your application's `spec/rails_helper.rb` (or similar).
+
+```ruby
+Rspec.configure do |config|
+  config.before :each do
+    RequestMigrations::Testing.setup!
+  end
+
+  config.after :each do
+    RequestMigrations::Testing.teardown!
+  end
+end
+```
+
 ## Tips and tricks
 
 Over the years, we're learned a thing or two about versioning an API. We'll share tips here.

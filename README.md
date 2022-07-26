@@ -409,6 +409,8 @@ To avoid polluting the global configuration, you can use `RequestMigrations::Tes
 within your application's `spec/rails_helper.rb` (or similar).
 
 ```ruby
+require 'request_migrations/testing'
+
 Rspec.configure do |config|
   config.before :each do
     RequestMigrations::Testing.setup!

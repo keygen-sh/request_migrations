@@ -17,6 +17,24 @@ Sponsored by:
 
 _A software licensing and distribution API built for developers._
 
+Links:
+
+- [Installing request_migrations](#installation)
+- [Supported Ruby versions](#supported-rubies)
+- [RubyDoc](#documentation)
+- [Usage](#usage)
+  - [Response migrations](#response-migrations)
+  - [Request migrations](#request-migrations)
+  - [Data migrations](#data-migrations)
+  - [Routing constraints](#routing-constraints)
+  - [Configuration](#configuration)
+  - [Version formats](#version-formats)
+- [Testing](#testing)
+- [Tips and tricks](#tips-and-tricks)
+- [Credits](#credits)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Installation
 
 Add this line to your application's `Gemfile`:

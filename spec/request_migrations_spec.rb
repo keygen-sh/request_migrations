@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "spec_helper"
+require "request_migrations/testing"
 
 RSpec.describe ActionController::Base, type: :controller do
   # TODO(ezekg) Move this to the dummy app?
@@ -26,6 +27,14 @@ RSpec.describe ActionController::Base, type: :controller do
         { type: 'users', id: 'user_ogb9gjingwtvuj50', first_name: 'Jane', last_name: 'Doe' },
       ]
     end
+  end
+
+  before do
+    RequestMigrations::Testing.setup!
+  end
+
+  after do
+    RequestMigrations::Testing.teardown!
   end
 
   before do
@@ -419,5 +428,47 @@ RSpec.describe ActionController::Base, type: :controller do
     post :echo, body: { n: 5 }.to_json
 
     expect(response_body).to include('n' => 0)
+  end
+
+  describe '.config=' do
+    context 'with a valid config' do
+      it 'should set the config' do
+        cfg = RequestMigrations::Configuration.new
+        cfg.tap { _1.current_version = '1.0' }
+
+        RequestMigrations.config = cfg
+
+        expect(RequestMigrations.config.current_version).to eq '1.0'
+      end
+    end
+
+    context 'with an invalid config' do
+      it 'should raise' do
+        cfg = { current_version: '1.0' }
+
+        expect { RequestMigrations.config = cfg }.to raise_error ArgumentError
+      end
+    end
+  end
+
+  describe '.reset!' do
+    it 'should reset the config' do
+      RequestMigrations.configure { _1.current_version = '1.0' }
+      RequestMigrations.reset!
+
+      expect(RequestMigrations.config.current_version).to be nil
+    end
+  end
+
+  describe 'Testing' do
+    it 'should restore the config' do
+      RequestMigrations.configure { _1.current_version = '1.0' }
+
+      RequestMigrations::Testing.setup!
+      RequestMigrations.configure { _1.current_version = '0.0' }
+      RequestMigrations::Testing.teardown!
+
+      expect(RequestMigrations.config.current_version).to eq '1.0'
+    end
   end
 end

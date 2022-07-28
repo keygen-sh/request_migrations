@@ -46,13 +46,16 @@ module RequestMigrations
   ##
   # @private
   def self.config=(cfg)
+    raise ArgumentError, 'invalid config provided' unless
+      cfg.is_a?(Configuration)
+
     @config = cfg
   end
 
   ##
   # @private
   def self.reset!
-    @config = RequestMigrations::Configuration.new
+    @config = Configuration.new
   end
 
   ##

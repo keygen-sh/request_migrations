@@ -425,7 +425,7 @@ end
 ```
 
 To avoid polluting the global configuration, you can use `RequestMigrations::Testing`
-within your application's `spec/rails_helper.rb` (or similar).
+within your application's `spec/rails_helper.rb`, or a similar spec helper:
 
 ```ruby
 require 'request_migrations/testing'

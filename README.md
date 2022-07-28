@@ -310,8 +310,8 @@ end
 
 This will apply the block defined in `migrate` onto our data. With that,
 we've successfully applied a migration to both our API responses, as well
-as to the webhook events we send. In this case, if our `event` matches the
-our user shape, e.g. `type: 'user'`, then the migration will be applied.
+as to the webhook events we send. In this case, if our `event` matches our
+expected user shape, e.g. `type: 'user'`, then the migration will be applied.
 
 In addition to data migrations, this allows for easier testing.
 

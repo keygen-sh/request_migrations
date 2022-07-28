@@ -441,6 +441,9 @@ Rspec.configure do |config|
 end
 ```
 
+This will setup a new test configuration, and then restore the previous global configuration
+after each spec.
+
 ## Tips and tricks
 
 Over the years, we're learned a thing or two about versioning an API. We'll share tips here.

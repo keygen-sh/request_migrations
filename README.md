@@ -142,7 +142,7 @@ end
 
 As you can see, with pattern matching, it makes creating migrations for certain
 resources simple. Here, we've defined a migration that only runs for the `users#show`
-resource, and only when the response is successfuly. In addition, the data is
+resource, and only when the response is successful. In addition, the data is
 only migrated when the response body contains a user.
 
 Next, we'll need to configure `request_migrations` via an initializer under

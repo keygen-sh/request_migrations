@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.homepage    = "https://github.com/keygen-sh/request_migrations"
   spec.license     = "MIT"
 
-  spec.required_ruby_version = ">= 3.0"
+  spec.required_ruby_version = ">= 3.1"
   spec.files                 = %w[LICENSE CHANGELOG.md CONTRIBUTING.md SECURITY.md README.md] + Dir.glob("lib/**/*")
   spec.require_paths         = ["lib"]
 

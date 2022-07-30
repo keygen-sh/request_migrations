@@ -57,8 +57,9 @@ $ gem install request_migrations
 
 ## Supported Rubies
 
-`request_migrations` supports Ruby 3. We encourage you to upgrade if you're on an older
-version. Ruby 3 provides a lot of great features, like better pattern matching.
+**`request_migrations` supports Ruby 3.1 and above.** We encourage you to upgrade if you're on an older
+version. Ruby 3 provides a lot of great features, like better pattern matching and a new shorthand
+hash syntax.
 
 ## Documentation
 

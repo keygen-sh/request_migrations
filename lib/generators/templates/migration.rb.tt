@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+class class <%= file_name.singularize.camelize %>Migration < RequestMigrations::Migration
+  # Provide a useful description of the change
+  description %(<%= @description %>)
+
+  # Migrate inputs that contain a resource_name. The migration should mutate
+  # the input, whatever that may be.
+  migrate if: -> data { data in type: 'resource_name' } do |data|
+    data[:key] = "value"
+  end
+
+  response if: -> res { res.request.params in action: <%= @actions.map{ |action| "'#{action}'" }.join(' | ') %> } do |res|
+    data = JSON.parse(res.body, symbolize_names: true)
+
+    # Call our migrate definition above
+    migrate!(data)
+
+    res.body = JSON.generate(data)
+  end
+end

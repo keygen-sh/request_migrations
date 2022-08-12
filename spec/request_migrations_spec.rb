@@ -12,8 +12,8 @@ RSpec.describe ActionController::Base, type: :controller do
     before_action :set_content_type
     wrap_parameters false
 
+    def index = render json: users
     def show = render json: users.find { _1[:id].ends_with?(params[:id]) }
-    def echo = render json: params.except(:controller, :action, :format)
 
     private
 
@@ -345,34 +345,36 @@ RSpec.describe ActionController::Base, type: :controller do
   end
 
   it 'should apply request migrations in ascending order' do
-    routes.draw { post 'echo' => 'anonymous#echo' }
+    routes.draw { get 'index' => 'anonymous#index' }
+
+    order = []
 
     RequestMigrations.configure do |config|
       config.current_version = '1.5'
       config.versions        = {
         '1.3' => [
           Class.new(RequestMigrations::Migration) do
-            request { |req| req.params[:n] = 4 if req.params in { n: 3 } }
+            request { order << '1.3' }
           end,
         ],
         '1.0' => [
           Class.new(RequestMigrations::Migration) do
-            request { |req| req.params[:n] = 1 if req.params in { n: 0 } }
+            request { order << '1.0' }
           end,
         ],
         '1.4' => [
           Class.new(RequestMigrations::Migration) do
-            request { |req| req.params[:n] = 5 if req.params in { n: 4 } }
+            request { order << '1.4' }
           end,
         ],
         '1.1' => [
           Class.new(RequestMigrations::Migration) do
-            request { |req| req.params[:n] = 2 if req.params in { n: 1 } }
+            request { order << '1.1' }
           end,
         ],
         '1.2' => [
           Class.new(RequestMigrations::Migration) do
-            request { |req| req.params[:n] = 3 if req.params in { n: 2 } }
+            request { order << '1.2' }
           end,
         ],
       }
@@ -382,40 +384,42 @@ RSpec.describe ActionController::Base, type: :controller do
     request.headers['Accept']       = 'application/json'
     request.headers['Version']      = '1.0'
 
-    post :echo, body: { n: 0 }.to_json
+    get :index
 
-    expect(response_body).to include('n' => 5)
+    expect(order).to match_array %w[1.4 1.3 1.2 1.1 1.0]
   end
 
   it 'should apply response migrations in decending order' do
-    routes.draw { post 'echo' => 'anonymous#echo' }
+    routes.draw { get 'index' => 'anonymous#index' }
+
+    order = []
 
     RequestMigrations.configure do |config|
       config.current_version = '1.5'
       config.versions        = {
         '1.1' => [
           Class.new(RequestMigrations::Migration) do
-            response { |res| res.body = { n: 1 }.to_json if res.body == { n: 2 }.to_json }
+            response { order << '1.1' }
           end,
         ],
         '1.2' => [
           Class.new(RequestMigrations::Migration) do
-            response { |res| res.body = { n: 2 }.to_json if res.body == { n: 3 }.to_json }
+            response { order << '1.2' }
           end,
         ],
         '1.4' => [
           Class.new(RequestMigrations::Migration) do
-            response { |res| res.body = { n: 4 }.to_json if res.body == { n: 5 }.to_json }
+            response { order << '1.4' }
           end,
         ],
         '1.0' => [
           Class.new(RequestMigrations::Migration) do
-            response { |res| res.body = { n: 0 }.to_json if res.body == { n: 1 }.to_json }
+            response { order << '1.0' }
           end,
         ],
         '1.3' => [
           Class.new(RequestMigrations::Migration) do
-            response { |res| res.body = { n: 3 }.to_json if res.body == { n: 4 }.to_json }
+            response { order << '1.3' }
           end,
         ],
       }
@@ -425,9 +429,9 @@ RSpec.describe ActionController::Base, type: :controller do
     request.headers['Accept']       = 'application/json'
     request.headers['Version']      = '1.0'
 
-    post :echo, body: { n: 5 }.to_json
+    get :index
 
-    expect(response_body).to include('n' => 0)
+    expect(order).to match_array %w[1.0 1.1 1.2 1.3 1.4]
   end
 
   describe '.config=' do

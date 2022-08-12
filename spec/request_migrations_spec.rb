@@ -344,7 +344,7 @@ RSpec.describe ActionController::Base, type: :controller do
     end
   end
 
-  it 'should apply request migrations in ascending order' do
+  it 'should apply request migrations in descending order' do
     routes.draw { get 'index' => 'anonymous#index' }
 
     order = []
@@ -389,7 +389,7 @@ RSpec.describe ActionController::Base, type: :controller do
     expect(order).to match_array %w[1.4 1.3 1.2 1.1 1.0]
   end
 
-  it 'should apply response migrations in decending order' do
+  it 'should apply response migrations in ascending order' do
     routes.draw { get 'index' => 'anonymous#index' }
 
     order = []

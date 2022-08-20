@@ -55,6 +55,21 @@ Or install it yourself as:
 $ gem install request_migrations
 ```
 
+Next, you need to run generator:
+
+```bash
+$ rails generate request_migrations:install # --api_version 1.1 --api_prev_version 1.0 # or -v 1.1 -pv 1.0
+```
+
+This will generate the initializer file `request_migrations.rb` under `initializers` folder, and BaseMigration file `base_migration.rb` under `app/migrations/` folder as it's recommended folder for migrations files.
+
+Also, you can add more migration files using
+
+
+```bash
+$  rails generate request_migrations:migration user # --actions create update --description "doing some data migration" or -a create update -d "doing some data migration" 
+```
+
 ## Supported Rubies
 
 **`request_migrations` supports Ruby 3.1 and above.** We encourage you to upgrade if you're on an older

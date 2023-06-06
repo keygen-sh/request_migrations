@@ -13,9 +13,9 @@ to serve millions of API requests per day.
 
 Sponsored by:
 
-[![Keygen logo](https://user-images.githubusercontent.com/6979737/175406169-bd8bf064-7343-4bd1-94b7-a773ecec07b8.png)](https://keygen.sh)
+[![Keygen logo](https://github.com/keygen-sh/request_migrations/assets/6979737/02326d91-32fd-4d79-a2e6-9d53b64b01ee)](https://keygen.sh)
 
-_A software licensing and distribution API built for developers._
+_An open, source-available software licensing and distribution API._
 
 Links:
 

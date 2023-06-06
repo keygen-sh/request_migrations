@@ -1,5 +1,6 @@
 # request_migrations
 
+[![CI](https://github.com/keygen-sh/request_migrations/actions/workflows/test.yml/badge.svg)](https://github.com/keygen-sh/request_migrations/actions)
 [![Gem Version](https://badge.fury.io/rb/request_migrations.svg)](https://badge.fury.io/rb/request_migrations)
 
 **Make breaking API changes without breaking things!** Use `request_migrations` to craft

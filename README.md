@@ -14,7 +14,11 @@ to serve millions of API requests per day.
 
 Sponsored by:
 
-[![Keygen logo](https://github.com/keygen-sh/request_migrations/assets/6979737/02326d91-32fd-4d79-a2e6-9d53b64b01ee)](https://keygen.sh)
+<a href="https://keygen.sh?ref=request_migrations">
+  <div>
+    <img src="https://keygen.sh/images/logo-pill.png" width="200" alt="Keygen">
+  </div>
+</a>
 
 _An open, source-available software licensing and distribution API._
 

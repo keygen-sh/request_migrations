@@ -222,6 +222,8 @@ The gem makes no assumption on a response's content type or what the migration
 will do. You could, for example, migrate the response body, or mutate the
 headers, or even change the response's status code.
 
+The `response` method can be used multiple times per-migration.
+
 ### Request migrations
 
 Request migrations define a change on a request. For example, modifying a request's
@@ -248,6 +250,8 @@ a migration does. A migration could mutate a request's params, or mutate
 headers. It's up to you, all it does is provide the request.
 
 Request migrations should [avoid using the `migrate` method](#avoid-migrate-for-request-migrations).
+
+The `request` method can be used multiple times.
 
 ### Data migrations
 
@@ -321,6 +325,10 @@ our expected data shape, e.g. `type: 'user'`, then the migration will
 be applied.
 
 In addition to data migrations, this allows for easier [testing](#testing).
+
+The `migrate` method can be used multiple times per-migration to e.g. 
+match and migrate on different shapes of data. For a JSON:API app,
+for example, you could migrate on `data: [*]` and `includes: [*]`.
 
 ### Routing constraints
 

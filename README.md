@@ -36,6 +36,7 @@ Links:
   - [Version formats](#version-formats)
 - [Testing](#testing)
 - [Tips and tricks](#tips-and-tricks)
+- [Examples](#examples)
 - [Credits](#credits)
 - [Contributing](#contributing)
 - [License](#license)
@@ -717,6 +718,13 @@ to get the data we need in order to complete the migration.
 ---
 
 Have a tip of your own? Open a pull request!
+
+## Examples
+
+Below are some real-world examples of request migrations:
+
+- Migrations: https://github.com/keygen-sh/keygen-api/tree/master/app/migrations
+- Tests: https://github.com/keygen-sh/keygen-api/tree/master/spec/migrations
 
 ## Is it any good?
 

@@ -642,7 +642,7 @@ end
 
 Avoid using routing version constraints that remove functionality. They can be a headache
 during upgrades. Consider only making _additive_ changes. Instead, consider removing or
-hiding the documenation for old or deprecated endpoints, to limit any new usage.
+hiding the documentation for old or deprecated endpoints, to limit any new usage.
 
 ```ruby
 Rails.application.routes.draw do

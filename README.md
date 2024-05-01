@@ -541,7 +541,7 @@ end
 And for a response containing a collection of users:
 
 ```ruby
-class CombineNamesForUserMigration < RequestMigrations::Migration
+class CombineNamesForUsersMigration < RequestMigrations::Migration
   description %(transforms a collection of users' first and last names to a combined name attribute)
 
   migrate if: -> data { data in [*, { type: 'user' }, *] do |data|

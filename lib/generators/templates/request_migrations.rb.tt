@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+RequestMigrations.configure do |config|
+  # Define a resolver to determine the target version. Here, you can perform
+  # a lookup on the current user using request parameters, or simply use
+  # a header like we are here, defaulting to the latest version.
+  config.request_version_resolver = -> request {
+    # request.headers.fetch('Foo-Version') { config.current_version }
+  }
+
+  # Define the latest version of our application.
+  config.current_version = <%= @version %>
+
+  # Define previous versions and their migrations, in descending order.
+  config.versions = {
+    '<%= @prev_version %>' => %i[base_migration]
+  }
+end

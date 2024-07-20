@@ -20,7 +20,7 @@ Sponsored by:
   </div>
 </a>
 
-_An open, source-available software licensing and distribution API._
+_A fair source software licensing and distribution API._
 
 Links:
 

@@ -35,9 +35,9 @@ module RequestMigrations
       #       resources :some_new_resource
       #     end
       #   end
-      def version_constraint(constraint, &)
+      def version_constraint(constraint, &block)
         constraints VersionConstraint.new(constraint:) do
-          instance_eval(&)
+          instance_eval(&block)
         end
       end
     end

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2
+
+- Remove deprecated `ActiveSupport::Configurable`.
+
 ## 1.1.1
 
 - Fix minimum required Ruby version from v3.0 to v3.1.

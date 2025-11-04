@@ -9,10 +9,7 @@ module RequestMigrations
     def self.setup!
       @@config = RequestMigrations.config
 
-      RequestMigrations.reset!
-      RequestMigrations.configure do |config|
-        @@config.config.each { |(k, v)| config.config[k] = v }
-      end
+      RequestMigrations.config = @@config.dup
     end
 
     ##

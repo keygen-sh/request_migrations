@@ -53,12 +53,6 @@ module RequestMigrations
   end
 
   ##
-  # @private
-  def self.reset!
-    @config = Configuration.new
-  end
-
-  ##
   # logger returns the configured logger.
   #
   # @return [Logger]

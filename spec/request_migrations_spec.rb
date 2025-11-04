@@ -455,15 +455,6 @@ RSpec.describe ActionController::Base, type: :controller do
     end
   end
 
-  describe '.reset!' do
-    it 'should reset the config' do
-      RequestMigrations.configure { _1.current_version = '1.0' }
-      RequestMigrations.reset!
-
-      expect(RequestMigrations.config.current_version).to be nil
-    end
-  end
-
   describe 'Testing' do
     it 'should restore the config' do
       RequestMigrations.configure { _1.current_version = '1.0' }

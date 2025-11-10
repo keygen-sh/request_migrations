@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+
+class BaseMigration < RequestMigrations::Migration
+  # Provide a useful description of the change
+  # description %(description goes here)
+
+  # Migrate inputs that contain a resource. The migration should mutate
+  # the input, whatever that may be.
+  # Replace resource below with the correct resource name, for eg: user
+  # migrate if: -> data { data in type: 'resource' } do |data|
+    # Mutate resource data
+    # Check link for more details https://github.com/keygen-sh/request_migrations#usage
+  # end
+
+  # Migrate the response. This is where you provide the migration input.
+  # Replace api/v1/resources below with the correct endpoint name, for eg: api/v1/users
+  # response if: -> res { res.successful? && res.request.params in controller: 'api/v1/resources',
+                                                                #  action: 'show' } do |res|
+    # data = JSON.parse(res.body, symbolize_names: true)
+
+    # Call our migrate definition above
+    # migrate!(data)
+
+    # res.body = JSON.generate(data)
+  # end
+end

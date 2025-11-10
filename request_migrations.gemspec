@@ -18,4 +18,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "semverse", "~> 3.0"
 
   spec.add_development_dependency "rspec-rails"
+  spec.add_development_dependency "generator_spec"
 end
